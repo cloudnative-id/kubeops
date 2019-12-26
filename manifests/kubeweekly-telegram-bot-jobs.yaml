@@ -1,0 +1,15 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: kubeweekly-telegram-bot-jobs
+  namespace: kubeweekly
+spec:
+  schedule: "0 1 * * *" # will run everyday
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: kubeweekly-telegram-bot
+            image: cloudnativeid/kubeweekly_telegram_bot:latest
+          restartPolicy: OnFailure
