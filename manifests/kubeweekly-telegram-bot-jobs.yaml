@@ -16,12 +16,12 @@ spec:
             - name: CHATID
               valueFrom:
                 secretKeyRef:
-                  name: telegam-chatid-secret
+                  name: telegram-chatid-secret
                   key: telegram-chatid
             - name: TELEGRAM_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: telegam-token-secret
+                  name: telegram-token-secret
                   key: telegram-token
             - name: GITHUB_TOKEN
               valueFrom:
