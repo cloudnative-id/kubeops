@@ -4,12 +4,28 @@ metadata:
   name: kubeweekly-telegram-bot-jobs
   namespace: kubeweekly
 spec:
-  schedule: "0 1 * * *" # will run everyday
+  schedule: "* 6 * * 6" # At every minute past hour 6 on Saturday.
   jobTemplate:
     spec:
       template:
         spec:
           containers:
           - name: kubeweekly-telegram-bot
-            image: cloudnativeid/kubeweekly_telegram_bot:latest
+            image: cloudnativeid/kubeweekly_telegram_bot:1.0.0
+            env:
+            - name: CHATID
+              valueFrom:
+                secretKeyRef:
+                  name: telegam-chatid-secret
+                  key: telegram-chatid
+            - name: TELEGRAM_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: telegam-token-secret
+                  key: telegram-token
+            - name: GITHUB_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: github-token-secret
+                  key: github-token
           restartPolicy: OnFailure
