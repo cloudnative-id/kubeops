@@ -4,14 +4,16 @@ metadata:
   name: kubeweekly-telegram-bot-jobs
   namespace: kubeweekly
 spec:
-  schedule: "* 6 * * 6" # At every minute past hour 6 on Saturday.
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  schedule: "* * * * 6" # At every minute on Saturday.
   jobTemplate:
     spec:
       template:
         spec:
           containers:
           - name: kubeweekly-telegram-bot
-            image: cloudnativeid/kubeweekly_telegram_bot:1.0.0
+            image: cloudnativeid/kubeweekly_telegram_bot:1.0.1
             env:
             - name: CHATID
               valueFrom:
