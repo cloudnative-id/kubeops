@@ -1,0 +1,24 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ .Values.job.name }}
+  namespace: {{ .Values.job.namespace }}
+spec:
+  schedule: {{ .Values.job.schedule }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          initContainers:
+          - name: {{ .Values.job.initContainers.name }}
+            image: {{ .Values.job.initContainers.image }}
+            args:
+            - {{ .Values.job.initContainers.args }}
+          containers:
+          - name: {{ .Values.job.name }}
+            image: {{ .Values.job.image }}
+          env:
+          {{- if .Values.job.env }}
+{{ toYaml .Values.job.env | indent 10 }}
+          {{- end }}
+          restartPolicy: OnFailure

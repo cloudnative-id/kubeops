@@ -1,0 +1,23 @@
+---
+# default values supplied for templates/* files
+job:
+  name: example-app
+  namespace: default
+  image: "brndnmtthws/nginx-echo-headers"
+  schedule: "*/12 * * * 3"
+  initContainers:
+    name: kubeweekly-scrapper
+    image: kubeweekly-scrapper:latest
+    args: npm run trigger
+
+  env:
+    - name: TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: example-app-secrets
+          key: telegram-bot-token
+    - name: CHATID
+      valueFrom:
+        secretKeyRef:
+          name: example-app-secrets
+          key: telegram-bot-chatid

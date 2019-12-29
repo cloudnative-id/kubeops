@@ -1,0 +1,25 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: kubeweekly-scrapper-jobs
+  namespace: kubeweekly
+spec:
+  schedule: "0 12 * * *" # will update the kubeweekly repository yaml At 12:00 everyday
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: kubeweekly
+            image: cloudnativeid/kubeweekly:1.0.0
+            args:
+            - npm run trigger
+            env:
+            - name: USER
+              value: 'cncfidbot'
+            - name: PASS
+              valueFrom:
+                secretKeyRef:
+                  name: github-token-secret
+                  key: github-token
+          restartPolicy: OnFailure
