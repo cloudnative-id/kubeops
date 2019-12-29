@@ -1,0 +1,33 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: kubeweekly-telegram-bot-jobs
+  namespace: kubeweekly
+spec:
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  schedule: "* * * * 6" # At every minute on Saturday.
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: kubeweekly-telegram-bot
+            image: cloudnativeid/kubeweekly_telegram_bot:1.0.1
+            env:
+            - name: CHATID
+              valueFrom:
+                secretKeyRef:
+                  name: telegram-chatid-secret
+                  key: telegram-chatid
+            - name: TELEGRAM_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: telegram-token-secret
+                  key: telegram-token
+            - name: GITHUB_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: github-token-secret
+                  key: github-token
+          restartPolicy: OnFailure
