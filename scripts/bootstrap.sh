@@ -9,19 +9,14 @@ err_report() {
 }
 trap 'err_report $LINENO' ERR
 
-IFS=$'\n\t'
-
 function grant_cluster_admin {
   local username="$1"
-  kubectl create clusterrolebinding $username-cluster-admin-binding --clusterrole=cluster-admin --user=$username@gmail.com
+  kubectl create clusterrolebinding $username-cluster-admin-binding --clusterrole=cluster-admin --user=$username
 }
 
 function init_argocd {
   kubectl create namespace argocd
   kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-
-  # TODO(giri): Should be exposed through ingress controller, doing this temporarily
-  kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 }
 
 function download_argocd_tools() {
@@ -40,4 +35,4 @@ init_argocd
 download_argocd_tools
 
 # TODO(admin): Anyone that wants to execute argocd need to be cluster admin
-grant_cluster_admin girikuncoro
+grant_cluster_admin girikuncoro@gmail.com
