@@ -39,9 +39,8 @@ jobs:
         service_account_email: ${{ secrets.GKE_EMAIL }}
         service_account_key: ${{ secrets.GKE_KEY }}
 
-    # Deploy the Docker image to the GKE cluster
+    # Deploy argocd apps to the GKE cluster
     - name: Deploy
       run: |
         gcloud container clusters get-credentials $GKE_CLUSTER --zone $GKE_ZONE --project $GKE_PROJECT
-        # TODO(giri): replace this with argocd apps deployment
-        kubectl get pods -o wide --all-namespaces
+        kubectl apply -f apps.yaml
