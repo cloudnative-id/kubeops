@@ -19,6 +19,9 @@ on:
 env:
   GKE_PROJECT: ${{ secrets.GKE_PROJECT }}
   GKE_EMAIL: ${{ secrets.GKE_EMAIL }}
+  KUBEWEEKLY_GITHUB_TOKEN: ${{ secrets.KUBEWEEKLY_GITHUB_TOKEN }}
+  KUBEWEEKLY_TELGRAM_CHATID: ${{ secrets.KUBEWEEKLY_TELGRAM_CHATID }}
+  KUBEWEEKLY_TELGRAM_TOKEN: ${{ secrets.KUBEWEEKLY_TELGRAM_TOKEN }}
   GITHUB_SHA: ${{ github.sha }}
   GKE_ZONE: asia-southeast1-a
   GKE_CLUSTER: community-cluster-1
@@ -43,4 +46,5 @@ jobs:
     - name: Deploy
       run: |
         gcloud container clusters get-credentials $GKE_CLUSTER --zone $GKE_ZONE --project $GKE_PROJECT
+        cat secret.tmpl | envsubst | kubectl apply -f - 
         kubectl apply -f apps.yaml

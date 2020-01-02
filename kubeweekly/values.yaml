@@ -1,12 +1,17 @@
-jobLimit: 1
+# define how many completed pod jobs
+jobHistoryLimit: 1
 
+# scraper cronjob
 scrapper:
-  name: kubeweekly-scrapper-jobs
-  namespace: kubeweekly
-  image: "cloudnativeid/kubeweekly:1.0.0"
-  schedule: "0 12 * * *"
-  args: "npm run trigger"
-  env:
+  image:
+    repository: "cloudnativeid/kubeweekly"
+    tag: "1.0.0"
+  cronSchedule: "0 12 * * *"
+  
+  extraArgs:
+  - npm run trigger
+
+  envFromSecrets:
   - name: USER
     value: 'cncfidbot'
   - name: PASS
@@ -16,11 +21,14 @@ scrapper:
         key: github-token
 
 telegramBot:
-  name: kubeweekly-telegram-bot-jobs
-  namespace: kubeweekly
-  image: "cloudnativeid/kubeweekly_telegram_bot:1.0.1"
-  schedule: "10 12 * * *"
-  env:
+  image:
+    repository: "cloudnativeid/kubeweekly_telegram_bot"
+    tag: "1.0.1"
+  cronSchedule: "10 12 * * *"
+
+  extraArgs: []
+
+  envFromSecrets:
   - name: CHATID
     valueFrom:
       secretKeyRef:
