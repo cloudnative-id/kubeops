@@ -1,0 +1,45 @@
+---
+  apiVersion: batch/v1beta1
+  kind: CronJob
+  metadata:
+    name: {{ .Values.scrapper.name }}
+    namespace: {{ .Values.scrapper.namespace }}
+  spec:
+    successfulJobsHistoryLimit: {{ .Values.jobLimit }}
+    failedJobsHistoryLimit: {{ .Values.jobLimit }}
+    schedule: {{ .Values.scrapper.schedule }}
+    jobTemplate:
+      spec:
+        template:
+          spec:
+            containers:
+            - name: {{ .Values.scrapper.name }}
+              image: {{ .Values.scrapper.image }}
+              args: {{ .Values.scrapper.args }}
+              env:
+              {{- if .Values.scrapper.env }}
+  {{ toYaml .Values.scrapper.env | indent 12 }}
+              {{- end }}
+              restartPolicy: OnFailure
+---
+  apiVersion: batch/v1beta1
+  kind: CronJob
+  metadata:
+    name: {{ .Values.telegramBot.name }}
+    namespace: {{ .Values.telegramBot.namespace }}
+  spec:
+    successfulJobsHistoryLimit: {{ .Values.jobLimit }}
+    failedJobsHistoryLimit: {{ .Values.jobLimit }}
+    schedule: {{ .Values.telegramBot.schedule }}
+    jobTemplate:
+      spec:
+        template:
+          spec:
+            containers:
+            - name: {{ .Values.telegramBot.name }}
+              image: {{ .Values.telegramBot.image }}
+              env:
+              {{- if .Values.telegramBot.env }}
+  {{ toYaml .Values.telegramBot.env | indent 12 }}
+              {{- end }}
+              restartPolicy: OnFailure
