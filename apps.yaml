@@ -15,4 +15,25 @@ spec:
       - values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: kubeweekly 
+    namespace: kubeweekly
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sealed-secrets
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/helm/charts
+    path: stable/sealed-secrets
+    helm:
+      releaseName: sealed-secrets
+      parameters:
+      - name: image.repository
+        value: quay.io/bitnami/sealed-secrets-controller
+      - name: image.tag
+        value: v0.9.6
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
