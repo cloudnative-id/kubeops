@@ -1,0 +1,50 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: kubeweekly-scrapper-jobs
+spec:
+  successfulJobsHistoryLimit: {{ .Values.jobHistoryLimit }}
+  failedJobsHistoryLimit: {{ .Values.jobHistoryLimit }}
+  schedule: {{ .Values.scrapper.cronSchedule }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: {{ .Values.scrapper.image.repository }}
+            image: "{{ .Values.scrapper.image.repository }}:{{ .Values.scrapper.image.tag }}"
+            {{- if .Values.scrapper.extraArgs }}
+            args:
+{{ toYaml .Values.scrapper.extraArgs | indent 12 }}
+            {{- end }}
+            {{- if .Values.scrapper.envFromSecrets }}
+            env:
+{{ toYaml .Values.scrapper.envFromSecrets | indent 12 }}
+            {{- end }}
+            restartPolicy: OnFailure
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: kubeweekly-telegrambot-jobs
+spec:
+  successfulJobsHistoryLimit: {{ .Values.jobHistoryLimit }}
+  failedJobsHistoryLimit: {{ .Values.jobHistoryLimit }}
+  schedule: {{ .Values.telegramBot.cronSchedule }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: {{ .Values.telegramBot.image.repository }}
+            image: "{{ .Values.telegramBot.image.repository }}:{{ .Values.telegramBot.image.tag }}"
+            {{- if .Values.telegramBot.extraArgs }}
+            args:
+{{ toYaml .Values.telegramBot.extraArgs | indent 12 }}
+            {{- end }}
+            {{- if .Values.telegramBot.envFromSecrets }}
+            env:
+{{ toYaml .Values.telegramBot.envFromSecrets | indent 12 }}
+            {{- end }}
+            restartPolicy: OnFailure

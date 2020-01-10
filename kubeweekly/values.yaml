@@ -1,23 +1,46 @@
----
-# default values supplied for templates/* files
-job:
-  name: example-app
-  namespace: default
-  image: "brndnmtthws/nginx-echo-headers"
-  schedule: "*/12 * * * 3"
-  initContainers:
-    name: kubeweekly-scrapper
-    image: kubeweekly-scrapper:latest
-    args: npm run trigger
+# define how many completed pod jobs
+jobHistoryLimit: 1
 
-  env:
-    - name: TOKEN
-      valueFrom:
-        secretKeyRef:
-          name: example-app-secrets
-          key: telegram-bot-token
-    - name: CHATID
-      valueFrom:
-        secretKeyRef:
-          name: example-app-secrets
-          key: telegram-bot-chatid
+# scraper cronjob
+scrapper:
+  image:
+    repository: "cloudnativeid/kubeweekly"
+    tag: "1.0.0"
+  cronSchedule: "0 12 * * *"
+  
+  extraArgs:
+  - npm run trigger
+
+  envFromSecrets:
+  - name: USER
+    value: 'cncfidbot'
+  - name: PASS
+    valueFrom:
+      secretKeyRef:
+        name: github-token-secret
+        key: github-token
+
+telegramBot:
+  image:
+    repository: "cloudnativeid/kubeweekly_telegram_bot"
+    tag: "1.0.1"
+  cronSchedule: "10 12 * * *"
+
+  extraArgs: []
+
+  envFromSecrets:
+  - name: CHATID
+    valueFrom:
+      secretKeyRef:
+        name: telegram-chatid-secret
+        key: telegram-chatid
+  - name: TELEGRAM_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: telegram-token-secret
+        key: telegram-token
+  - name: GITHUB_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: github-token-secret
+        key: github-token
