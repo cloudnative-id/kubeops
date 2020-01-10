@@ -2,7 +2,7 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: kubeweekly-scrapper-jobs
+  name: kubeweekly-scrapper-cronjob
 spec:
   successfulJobsHistoryLimit: {{ .Values.jobHistoryLimit }}
   failedJobsHistoryLimit: {{ .Values.jobHistoryLimit }}
@@ -12,7 +12,7 @@ spec:
       template:
         spec:
           containers:
-          - name: {{ .Values.scrapper.image.repository }}
+          - name: {{ .Values.scrapper.image.name }}
             image: "{{ .Values.scrapper.image.repository }}:{{ .Values.scrapper.image.tag }}"
             {{- if .Values.scrapper.extraArgs }}
             args:
@@ -27,7 +27,7 @@ spec:
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: kubeweekly-telegrambot-jobs
+  name: kubeweekly-telegrambot-cronjob
 spec:
   successfulJobsHistoryLimit: {{ .Values.jobHistoryLimit }}
   failedJobsHistoryLimit: {{ .Values.jobHistoryLimit }}
@@ -37,7 +37,7 @@ spec:
       template:
         spec:
           containers:
-          - name: {{ .Values.telegramBot.image.repository }}
+          - name: {{ .Values.telegramBot.image.name }}
             image: "{{ .Values.telegramBot.image.repository }}:{{ .Values.telegramBot.image.tag }}"
             {{- if .Values.telegramBot.extraArgs }}
             args:
