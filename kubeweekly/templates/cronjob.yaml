@@ -11,6 +11,7 @@ spec:
     spec:
       template:
         spec:
+          restartPolicy: OnFailure
           containers:
           - name: {{ .Values.scrapper.image.name }}
             image: "{{ .Values.scrapper.image.repository }}:{{ .Values.scrapper.image.tag }}"
@@ -36,6 +37,7 @@ spec:
     spec:
       template:
         spec:
+          restartPolicy: OnFailure
           containers:
           - name: {{ .Values.telegramBot.image.name }}
             image: "{{ .Values.telegramBot.image.repository }}:{{ .Values.telegramBot.image.tag }}"
