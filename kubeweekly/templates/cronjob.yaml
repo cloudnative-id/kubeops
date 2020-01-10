@@ -23,7 +23,6 @@ spec:
             env:
 {{ toYaml .Values.scrapper.envFromSecrets | indent 12 }}
             {{- end }}
-            restartPolicy: OnFailure
 ---
 apiVersion: batch/v1beta1
 kind: CronJob
@@ -49,4 +48,3 @@ spec:
             env:
 {{ toYaml .Values.telegramBot.envFromSecrets | indent 12 }}
             {{- end }}
-            restartPolicy: OnFailure
