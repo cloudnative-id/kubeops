@@ -9,8 +9,7 @@ scrapper:
     tag: "1.0.0"
   cronSchedule: "0 12 * * *"
   
-  extraArgs:
-  - npm run trigger
+  extraArgs: []
 
   envFromSecrets:
   - name: USER
