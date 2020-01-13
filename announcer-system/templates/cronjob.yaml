@@ -15,6 +15,7 @@ spec:
           containers:
           - name: {{ .Values.cronjob.image.name }}
             image: "{{ .Values.cronjob.image.repository }}:{{ .Values.cronjob.image.tag }}"
+            imagePullPolicy: Always
             {{- if .Values.cronjob.extraArgs }}
             args:
 {{ toYaml .Values.cronjob.extraArgs | indent 12 }}
