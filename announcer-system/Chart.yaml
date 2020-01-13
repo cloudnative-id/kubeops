@@ -1,12 +1,12 @@
 ---
 apiVersion: v1
-name: kubeweekly
+name: Announcer System
 version: 0.1.0
 # kubeVersion: A SemVer range of compatible Kubernetes versions (optional)
-description: Kubeweekly scrapper and bot
+description: Announcer System for Cloud Native Indonesia 
 keywords:
-  - kubeweekly
-home: https://github.com/cloudnative-id/kubeops/kubeweekly/
+  - announcersystem
+home: https://github.com/cloudnative-id/announcer-system
 engine: gotpl # The name of the template engine (optional, defaults to gotpl)
 #icon: A URL to an SVG or PNG image to be used as an icon (optional).
 #appVersion: The version of the app that this contains (optional). This needn't be SemVer.

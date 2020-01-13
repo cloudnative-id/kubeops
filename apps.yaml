@@ -2,20 +2,38 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kubeweekly
+  name: announcer-orchestrator
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/cloudnative-id/kubeops.git
     targetRevision: HEAD
-    path: kubeweekly
+    path: announcer-system
     helm:
       valueFiles:
-      - values.yaml
+      - orchestrator-values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: kubeweekly
+    namespace: announcer-system
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: announcer-kubeweekly-content
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/cloudnative-id/kubeops.git
+    targetRevision: HEAD
+    path: announcer-system
+    helm:
+      valueFiles:
+      - kubeweekly-content-values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: announcer-system
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
