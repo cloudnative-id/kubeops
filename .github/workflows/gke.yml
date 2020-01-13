@@ -47,5 +47,9 @@ jobs:
     - name: Deploy
       run: |
         gcloud container clusters get-credentials $GKE_CLUSTER --zone $GKE_ZONE --project $GKE_PROJECT
+        ANNOUNCER_SYSTEM_GITHUB_USER_BASE64=$(echo $ANNOUNCER_SYSTEM_GITHUB_USER | base64)
+        ANNOUNCER_SYSTEM_GITHUB_TOKEN_BASE64=$(echo $ANNOUNCER_SYSTEM_GITHUB_TOKEN | base64)
+        ANNOUNCER_SYSTEM_TELEGRAM_CHATID_BASE64=$(echo $ANNOUNCER_SYSTEM_TELEGRAM_CHATID | base64)
+        ANNOUNCER_SYSTEM_TELEGRAM_TOKEN_BASE64=$(echo $ANNOUNCER_SYSTEM_TELEGRAM_TOKEN | base64)
         cat secret.tmpl | envsubst | kubectl apply -f - 
         kubectl apply -f apps.yaml
