@@ -11,6 +11,7 @@ spec:
     spec:
       template:
         spec:
+          restartPolicy: OnFailure
           containers:
           - name: {{ .Values.scrapper.image.name }}
             image: "{{ .Values.scrapper.image.repository }}:{{ .Values.scrapper.image.tag }}"
@@ -22,7 +23,6 @@ spec:
             env:
 {{ toYaml .Values.scrapper.envFromSecrets | indent 12 }}
             {{- end }}
-            restartPolicy: OnFailure
 ---
 apiVersion: batch/v1beta1
 kind: CronJob
@@ -36,6 +36,7 @@ spec:
     spec:
       template:
         spec:
+          restartPolicy: OnFailure
           containers:
           - name: {{ .Values.telegramBot.image.name }}
             image: "{{ .Values.telegramBot.image.repository }}:{{ .Values.telegramBot.image.tag }}"
@@ -47,4 +48,3 @@ spec:
             env:
 {{ toYaml .Values.telegramBot.envFromSecrets | indent 12 }}
             {{- end }}
-            restartPolicy: OnFailure

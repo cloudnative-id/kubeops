@@ -7,7 +7,7 @@ scrapper:
     name: "kubeweekly-scrapper-job"
     repository: "cloudnativeid/kubeweekly"
     tag: "1.0.0"
-  cronSchedule: "0 12 * * *"
+  cronSchedule: "0 6,7,8,9,10,11,12,18 * * *"
   
   extraArgs: []
 
@@ -25,7 +25,7 @@ telegramBot:
     name: "kubeweekly-telegrambot-job"
     repository: "cloudnativeid/kubeweekly_telegram_bot"
     tag: "1.0.1"
-  cronSchedule: "10 12 * * *"
+  cronSchedule: "10 6,7,8,9,10,11,12,18 * * *"
 
   extraArgs: []
 
