@@ -8,7 +8,7 @@ cronjob:
     name: "announcer-orchestrator"
     repository: "cloudnativeid/announcer-orchestrator"
     tag: "1.0.0"
-  cronSchedule: "10 6,7,8,9,10,11,12,18 * * *"
+  cronSchedule: "5 23,0,1,2,3,4,5,11 * * *"
 
   extraArgs: []
 
