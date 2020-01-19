@@ -38,6 +38,25 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: nginx-ingress
+  namespace: infrastructure
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/helm/charts
+    path: stable/nginx-ingress
+    helm:
+      releaseName: nginx-ingress
+      parameters:
+      - name: rbac.create
+        value: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: sealed-secrets
   namespace: argocd
 spec:
