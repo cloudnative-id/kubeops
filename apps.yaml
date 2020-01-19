@@ -52,7 +52,7 @@ spec:
         value: "true"
   destination:
     server: https://kubernetes.default.svc
-    namespace: infrastructures
+    namespace: infrastructure
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
