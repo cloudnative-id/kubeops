@@ -1,0 +1,27 @@
+# define how many completed pod jobs
+jobHistoryLimit: 1
+
+# cronjob
+cronjob:
+  name: announcer-cncf-newsroom-content-cronjob
+  image:
+    name: "announcer-cncf-newsroom-content"
+    repository: "cloudnativeid/announcer-cncf-newsroom-content"
+    tag: "1.0.0"
+  cronSchedule: "0 0 * * 1"
+  
+  extraArgs: []
+
+  envFromSecrets:
+  - name: USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: github-user-secret
+        key: github-user
+  - name: PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: github-token-secret
+        key: github-token
+
+
