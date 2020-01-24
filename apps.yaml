@@ -38,6 +38,24 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: announcer-cncf-newsroom-content
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/cloudnative-id/kubeops.git
+    targetRevision: HEAD
+    path: announcer-system
+    helm:
+      valueFiles:
+      - cncf-newsroom-content-values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: announcer-system
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: nginx-ingress
   namespace: argocd
 spec:
