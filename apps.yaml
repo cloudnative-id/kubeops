@@ -5,6 +5,8 @@ metadata:
   name: announcer-orchestrator
   namespace: argocd
 spec:
+  syncPolicy:
+    automated: {}
   project: default
   source:
     repoURL: https://github.com/cloudnative-id/kubeops.git
@@ -23,6 +25,8 @@ metadata:
   name: announcer-kubeweekly-content
   namespace: argocd
 spec:
+  syncPolicy:
+    automated: {}
   project: default
   source:
     repoURL: https://github.com/cloudnative-id/kubeops.git
@@ -41,6 +45,8 @@ metadata:
   name: announcer-cncf-newsroom-content
   namespace: argocd
 spec:
+  syncPolicy:
+    automated: {}
   project: default
   source:
     repoURL: https://github.com/cloudnative-id/kubeops.git
@@ -49,6 +55,26 @@ spec:
     helm:
       valueFiles:
       - cncf-newsroom-content-values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: announcer-system
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: announcer-cncf-webinar-content
+  namespace: argocd
+spec:
+  syncPolicy:
+    automated: {}
+  project: default
+  source:
+    repoURL: https://github.com/cloudnative-id/kubeops.git
+    targetRevision: HEAD
+    path: announcer-system
+    helm:
+      valueFiles:
+      - cncf-webinar-content-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: announcer-system
