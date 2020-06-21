@@ -1,0 +1,25 @@
+apiVersion: community.io/v1alpha1
+kind: Meetup
+metadata:
+  name: jakarta-meetup-15
+spec:
+  name: "Kubernetes Cloud Native Jakarta Online Meetup #16"
+  date: "June 30, 2020"
+  time: "19.00"
+  place: "Online"
+  city: "Jakarta"
+  sponsor: "Cloud Native Computing Foundation"
+  registration_url: "bit.ly/k8scloudnativejkt16"
+  image: "https://raw.githubusercontent.com/cloudnative-id/artwork/master/poster/jakarta/jakarta-16.png"
+  tags:
+    - meetup
+    - cncf
+  speakers:
+    - name: "Srinivasa Vasu"
+      position: "Field Platform Architect"
+      company: "VMware"
+      title: "Introduction to Cluster API"
+    - name: "Zainal Abidin"
+      position: "Sysadmin Head"
+      company: "MNC Play"
+      title: "Interconnection Kubernetes with Docker Swarm"
