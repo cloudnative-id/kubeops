@@ -118,3 +118,20 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: infrastructure
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: community-operator-manifest
+  namespace: argocd
+spec:
+  project: default
+  syncPolicy:
+    automated: {}
+  source:
+    repoURL: https://github.com/cloudnative-id/kubeops.git
+    targetRevision: HEAD
+    path: manifest/community-operator
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: community-operator
