@@ -1,0 +1,25 @@
+apiVersion: community.io/v1alpha1
+kind: Meetup
+metadata:
+  name: jakarta-meetup-18
+spec:
+  name: "Kubernetes Cloud Native Jakarta Online Meetup #18"
+  date: "August 13, 2020"
+  time: "19.00"
+  place: "Online"
+  city: "Jakarta"
+  sponsor: "Cloud Native Computing Foundation"
+  registration_url: "bit.ly/k8scloudnativejkt18"
+  image: "https://raw.githubusercontent.com/cloudnative-id/artwork/master/poster/jakarta/jakarta-18.jpeg"
+  tags:
+    - meetup
+    - cncf
+  speakers:
+    - name: "Betel Zohar"
+      position: "Enterprise Solutions Lead"
+      company: "JFrog"
+      title: "Best Practices In Implementing Container Image Promotion Pipeline"
+    - name: "Muhammad Yuga Nugraha"
+      position: "DevSecOps Engineer"
+      company: "Practical DevSecOps"
+      title: "Securing k8s using Kubernetes Goat"
