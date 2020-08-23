@@ -1,0 +1,29 @@
+apiVersion: community.io/v1alpha1
+kind: Meetup
+metadata:
+  name: bandung-meetup-11
+spec:
+  name: "Kubernetes Cloud Native Bandung Online Meetup #11"
+  date: "August 28, 2020"
+  time: "19.00"
+  place: "Online"
+  city: "Bandung"
+  sponsor: "Cloud Native Computing Foundation"
+  registration_url: "https://bit.ly/k8scloudnativebdg11"
+  image: "https://raw.githubusercontent.com/cloudnative-id/artwork/master/poster/bandung/bandung-11.png"
+  tags:
+    - meetup
+    - cncf
+  speakers:
+    - name: "Saurabh Gupta"
+      position: "Senior Developer Advocate"
+      company: DigitalOcean"
+      title: "Best Practices for Securing Kubernetes Cluster"
+    - name: "Imre Nagi"
+      position: "Google Developer Expert Cloud"
+      company: "Google"
+      title: "CloudEvents Spec"
+    - name: "Deny Prasetyo"
+      position: "System Engineer"
+      company: "Gojek"
+      title: "Kubernetes Secrets Security with Vault"
