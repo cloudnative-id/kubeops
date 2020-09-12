@@ -122,7 +122,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: community-operator-manifest
+  name: community-announcement
   namespace: argocd
 spec:
   project: default
@@ -131,7 +131,41 @@ spec:
   source:
     repoURL: https://github.com/cloudnative-id/kubeops.git
     targetRevision: HEAD
-    path: manifest/community-operator
+    path: manifest/community-operator/announcement
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: community-operator
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: community-meetup
+  namespace: argocd
+spec:
+  project: default
+  syncPolicy:
+    automated: {}
+  source:
+    repoURL: https://github.com/cloudnative-id/kubeops.git
+    targetRevision: HEAD
+    path: manifest/community-operator/meetup
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: community-operator
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: community-weekly
+  namespace: argocd
+spec:
+  project: default
+  syncPolicy:
+    automated: {}
+  source:
+    repoURL: https://github.com/cloudnative-id/kubeops.git
+    targetRevision: HEAD
+    path: manifest/community-operator/weekly
   destination:
     server: https://kubernetes.default.svc
     namespace: community-operator
