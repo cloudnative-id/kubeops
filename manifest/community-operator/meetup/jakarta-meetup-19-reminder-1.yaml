@@ -1,0 +1,25 @@
+apiVersion: community.io/v1alpha1
+kind: Meetup
+metadata:
+  name: jakarta-meetup-19-reminder-1
+spec:
+  name: "Kubernetes Cloud Native Jakarta Online Meetup #19"
+  date: "September 24, 2020"
+  time: "19.00"
+  place: "Online"
+  city: "Jakarta"
+  sponsor: "Cloud Native Computing Foundation"
+  registration_url: "bit.ly/k8scloudnativejkt19"
+  image: "https://raw.githubusercontent.com/cloudnative-id/artwork/master/poster/jakarta/jakarta-19.png"
+  tags:
+    - meetup
+    - cncf
+  speakers:
+    - name: "Pengfei Qu"
+      position: "Media & Graphic Software Engineer, Technical Lead"
+      company: "Intel China Research Center Ltd."
+      title: "E2E Smart City Sample in the Edge and Cloud"
+    - name: "Giri Kuncoro"
+      position: "Ambassador"
+      company: "CNCF"
+      title: "Kubernetes Job and Cron Job deep dive"
