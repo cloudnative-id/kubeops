@@ -1,0 +1,34 @@
+apiVersion: community.io/v1alpha1
+kind: Meetup
+metadata:
+  name: cncf-hacktoberfest-meetup-2020
+spec:
+  name: "Cloud Native Indonesia Meetup Hacktoberfest Edition"
+  date: "October 27, 2020"
+  time: "19.00"
+  place: "Online"
+  city: "Indonesia"
+  sponsor: "Cloud Native Computing Foundation"
+  registration_url: "http://bit.ly/cni-hacktoberfest-2020"
+  image: "https://raw.githubusercontent.com/cloudnative-id/artwork/master/poster/jakarta/jakarta20.png"
+  tags:
+    - meetup
+    - cncf
+    - hacktoberfest
+  speakers:
+    - name: "Jürgen Etzlstorfer"
+      position: "Technology Strategist"
+      company: "Dynatrace"
+      title: "Overcome Challenges with Prometheus and Keptn"
+    - name: "Ahmad Nurus Shobah"
+      position: "Intern"
+      company: "Google Summer of Code"
+      title: "Open Source Panel Discussion"
+    - name: "Deka Aulia"
+      position: "Computer Science Student"
+      company: "Columbia University, New York"
+      title: "Open Source Panel Discussion"
+    - name: "Dhi Aurrahman"
+      position: "Software Engineer"
+      company: " Tetrate.io"
+      title: "Open Source Panel Discussion"
