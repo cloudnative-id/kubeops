@@ -1,0 +1,14 @@
+apiVersion: community.io/v1alpha1
+kind: Announcement
+metadata:
+  name: testing-announcement
+spec:
+  title: "Testing Announcement!"
+  community: Cloud Native Indonesia Community 
+  message: >-
+    Testing Announcement!
+  image: https://raw.githubusercontent.com/cloudnative-id/artwork/master/logos/cloud-native-indonesia-text.png
+  tags:
+    - announcement
+    - community-operator
+    - cncf
