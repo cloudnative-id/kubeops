@@ -1,0 +1,13 @@
+apiVersion: community.io/v1alpha1
+kind: Announcement
+metadata:
+  name: oicndi-annoucement-03
+spec:
+  title: "Open Infrastructure & Cloud Native Day Indonesia 2020"
+  community: Cloud Native Indonesia Community 
+  message: >-
+    Cloud Native Indonesia akan ada di acara OICNDI2020 dalam sesi Yuk Kontribusi ke Kubernetes Lewat Dokumentasi! Teman-teman yang ingin tau dan minat berkontribusi silakan ikut sesi ini di jam 15.05 - 17.30 WIB. Sampai bertemu virtual!
+  image: https://www.openstack.id/wp-content/uploads/2020/10/cloud-native-session-rev2.png
+    - announcement
+    - oicndi
+    - cncf
