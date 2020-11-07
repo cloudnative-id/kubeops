@@ -1,0 +1,14 @@
+apiVersion: community.io/v1alpha1
+kind: Announcement
+metadata:
+  name: oicndi-annoucement-04
+spec:
+  title: "D-Day Open Infrastructure & Cloud Native Day Indonesia 2020"
+  community: Cloud Native Indonesia Community 
+  message: >-
+    Hari ini! Open Infrastructure & Cloud Native Day Indonesia 2020. Cek email teman-teman yang terdaftar untuk Tiket Acara. Login & saksikan keseruan OICNDI2020 bersama hari ini! Sampai berjumpa di venue virtual!
+  image: https://www.openstack.id/wp-content/uploads/2020/11/oicndi20_hopin_mainevent.png 
+  tags:
+    - announcement
+    - oicndi
+    - cncf
