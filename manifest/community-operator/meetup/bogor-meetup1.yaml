@@ -1,0 +1,25 @@
+apiVersion: community.io/v1alpha1
+kind: Meetup
+metadata:
+  name: bogor-meetup-1
+spec:
+  name: "Kubernetes Cloud Native Bogor Online Meetup #1"
+  date: "November 27, 2020"
+  time: "19.00"
+  place: "Online"
+  city: "Bogor"
+  sponsor: "Cloud Native Computing Foundation"
+  registration_url: "bit.ly/k8scloudnativebgr1"
+  image: "https://raw.githubusercontent.com/cloudnative-id/artwork/master/poster/bogor/bogor-1.png"
+  tags:
+    - meetup
+    - cncf
+  speakers:
+    - name: "Srinivasa Vasu"
+      position: "Field Solution Engineer"
+      company: "VMware"
+      title: "Code to a Production-Ready Container with Cloud Native Buildpacks (CNB)"
+    - name: "Muhammad Aushafy Setyawan"
+      position: "Solutions Engineer"
+      company: "PT Infracom Technology"
+      title: "Simplify Remote Container Image Operation with Skopeo
